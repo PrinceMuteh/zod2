@@ -8,8 +8,8 @@ $sidebar-bg: #ffffff;
 $sidebar-menu-item-color: #545a6d;
 $sidebar-menu-sub-item-color: #545a6d;
 $sidebar-menu-item-icon-color: #545a6d;
-$sidebar-menu-item-hover-color: #1c84ee;
-$sidebar-menu-item-active-color: #1c84ee;
+$sidebar-menu-item-hover-color: #473198;
+$sidebar-menu-item-active-color: #473198;
 $sidebar-border-color: transparent;
 $sidebar-width: 250px;
 $sidebar-collapsed-width: 70px;
@@ -27,7 +27,7 @@ $header-bg: #ffffff;
 $header-item-color: #555b6d;
 $header-box-shadow: 0 0.25rem 0.75rem rgba(18, 38, 63, 0.08);
 // Topbar - Dark
-$header-dark-bg: #1c84ee;
+$header-dark-bg: #473198;
 $header-dark-item-color: #e9ecef;
 $header-dark-box-shadow: 0 0.2rem 0.5rem rgba(18, 38, 63, 0.3);
 // Topbar Search
@@ -39,7 +39,7 @@ $footer-color: #74788d;
 // Horizontal nav
 $topnav-bg: #ffffff;
 $menu-item-color: #545a6d;
-$menu-item-active-color: #1c84ee;
+$menu-item-active-color: #473198;
 // Horizontal nav
 $topnav-dark-bg: #232a30;
 $menu-dark-item-color: #99a4b1;
@@ -95,7 +95,7 @@ $grays: ( "100": $gray-100, "200": $gray-200, "300": $gray-300, "400": $gray-400
 // scss-docs-end gray-colors-map
 // fusv-enable
 // scss-docs-start color-variables
-$blue: #1c84ee;
+$blue: #473198;
 $indigo: #564ab1;
 $purple: #6f42c1;
 $pink: #e83e8c;

@@ -53,6 +53,14 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Sub Category</a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="javascript: void(0);" data-key="t-level-2-1">Add Sub Category</a></li>
+                                <li><a href="javascript: void(0);" data-key="t-level-2-1">All Sub Category</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
                             <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Brands</a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="javascript: void(0);" data-key="t-level-2-1">Add Brands</a></li>
