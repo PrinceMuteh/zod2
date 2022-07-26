@@ -83,7 +83,7 @@
                 <a href="{{ url('index/en') }}" class="dropdown-item notify-item language" data-lang="eng">
                     <img src="{{ URL::asset ('/assets/images/flags/us.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                 </a>
-                <!-- item-->
+                {{-- <!-- item-->
                 <a href="{{ url('index/es') }}" class="dropdown-item notify-item language" data-lang="sp">
                     <img src="{{ URL::asset ('/assets/images/flags/spain.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                 </a>
@@ -101,7 +101,7 @@
                 <!-- item-->
                 <a href="{{ url('index/ru') }}" class="dropdown-item notify-item language" data-lang="ru">
                     <img src="{{ URL::asset ('/assets/images/flags/russia.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                </a>
+                </a> --}}
             </div>
             </div>
 
