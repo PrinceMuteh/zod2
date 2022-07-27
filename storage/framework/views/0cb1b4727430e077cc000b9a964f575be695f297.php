@@ -5,20 +5,18 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="<?php echo e(URL::asset('assets/images/logo-sm.svg')); ?>" alt="" height="30">
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?php echo e(URL::asset('assets/images/logo-sm.svg')); ?>" alt="" height="24"> <span class="logo-txt">Dason</span>
-                    </span>
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60"> </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="<?php echo e(URL::asset('assets/images/logo-sm.svg')); ?>" alt="" height="30">
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?php echo e(URL::asset('assets/images/logo-sm.svg')); ?>" alt="" height="24"> <span class="logo-txt">Dason</span>
-                    </span>
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60"> </span>
                 </a>
             </div>
 

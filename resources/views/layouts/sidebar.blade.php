@@ -26,12 +26,14 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow"
-                                data-key="t-level-1-2">@lang('translation.product_management')</a>
+                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2">
+                                Product
+                                {{-- @lang('translation.product_management') --}}
+                            </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="ecommerce-add-product" data-key="t-add-product">@lang('translation.Add_Product')</a></li>
-
-                                <li><a href="maintenance" data-key="t-level-2-2">@lang('translation.Products')</a></li>
+                                <li><a href="{{ route('product.view') }}" data-key="t-level-2-2">@lang('translation.Products')</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -45,11 +47,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Sub Category</a>
+                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Category</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="maintenance" data-key="t-level-2-1">Add Sub Category</a></li>
-                                <li><a href="maintenance" data-key="t-level-2-1">All Sub Category</a></li>
-
+                                <li><a href="{{ route('category.add') }}" data-key="t-level-2-1">Add Category</a></li>
+                                <li><a href="{{ route('category.view') }} " data-key="t-level-2-1">All Category</a></li>
                             </ul>
                         </li>
                         <li>
@@ -165,11 +166,11 @@
 
 
                 </li>
-                <li><a href="javascript: void(0);" data-key="t-login">    <i data-feather="briefcase"></i> Support</a></li>
+                <li><a href="javascript: void(0);" data-key="t-login"> <i data-feather="briefcase"></i> Support</a>
+                </li>
 
             </ul>
-{{-- 
-            <div class="card sidebar-alert shadow-none text-center mx-4 mb-0 mt-5">
+            {{-- <div class="card sidebar-alert shadow-none text-center mx-4 mb-0 mt-5">
                 <div class="card-body">
                     <img src="assets/images/giftbox.png" alt="">
                     <div class="mt-4">

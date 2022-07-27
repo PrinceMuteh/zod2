@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Http\Request;
+
 
 class CategoryController extends Controller
 {
@@ -15,8 +17,19 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view("category-view");
     }
+    public function addcategory()
+    {
+        return view("category");
+    }
+    public function viewcategory()
+    {
+        $category = Category::all();
+        // dd($category);
+    return view("category-view",['category' => $category]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,9 +47,27 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    // public function store(StoreCategoryRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name' => ['required', 'string'],
+            'category_description' => ['required', 'string'],
+        ]);
+
+        // dd(Auth()->user()->id);
+        // $request->request->add(['user_id' => Auth()->user()->id]);
+        // dd($request->all());
+        $flight = Category::create([
+            'name' => 'London to Paris',
+            'user_id' => Auth()->user()->id,
+            'category_name' => $request->category_name,
+            'category_description' => $request->category_description,
+        ]);
+
+        // $product = Category::create(array_merge( $request->validated() , ['user_id' => Auth()->user()->id]));
+        return back()->with("success", "successful");
+        // return  view( 'category-view', ['category' => $category] )->with("success", "Successful");
     }
 
     /**

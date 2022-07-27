@@ -5,82 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
+use GuzzleHttp\Handler\Proxy;
 
-class ProductController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+class ProductController extends Controller {
+
+    public function index() {
+
+        return view( 'ecommerce-view-product' );
+    }
+
+    public function view() {
+        // dd( 'hello' );
+        $data = Product::all();
+        // return $data;
+        return view( 'ecommerce-view-product', [ 'product' =>  $data ] );
+    }
+
+    public function store( StoreProductRequest $request ) {
+        // dd( $request );
+
+        $product = Product::create( $request->validated() );
+
+        // return $product;
+        return back()->with( 'success', 'Product Added Successful' );
+        // return  view( 'ecommerce-product-detail' );
+    }
+
+    public function show( Product $product ) {
+        return new ProductResource( $product );
+
+    }
+
+    public function edit( Product $product ) {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function update( UpdateProductRequest $request, Product $product ) {
+        $product->update( $request->validated() );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreProductRequest $request)
-    {
-        //
-    }
+    public function destroy( Product $product ) {
+        $product->delete();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateProductRequest $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
+        // return response()->noContent();
     }
 }

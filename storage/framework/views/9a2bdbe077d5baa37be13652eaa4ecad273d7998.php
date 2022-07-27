@@ -18,92 +18,86 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Basic Information</h4>
+                    <h4 class="card-title">Product Information</h4>
                     <p class="card-title-desc">Fill all information below</p>
                 </div>
+        <?php echo $__env->make('layouts.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
                 <div class="card-body">
-                    <form action="" method="post">
-                    <?php echo csrf_field(); ?>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="mb-3">
-                                <label for="productname">Product Name</label>
-                                <input id="productname" name="productname" type="text" class="form-control"
-                                    placeholder="Product Name">
+                    <form action="<?php echo e(route("product.store")); ?>" method="post">
+                        <?php echo csrf_field(); ?>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label for="productname">Product Name</label>
+                                    <input id="productname" value="<?php echo e(old("product_name")); ?>" name="product_name" type="text" class="form-control"
+                                        placeholder="Product Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="manufacturername">Manufacturer Name</label>
+                                    <input id="manufacturername" value="<?php echo e(old("manufacturer_name")); ?>" name="manufacturer_name" type="text" class="form-control"
+                                        placeholder="Manufacturer Name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="manufacturerbrand">Manufacturer Brand</label>
+                                    <input id="manufacturerbrand" value="<?php echo e(old("manufacturer_brand")); ?>" name="manufacturer_brand" type="text"
+                                        class="form-control" placeholder="Manufacturer Brand">
+                                </div>
+                                <div class="mb-3">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="price">Price</label>
+                                            <input id="price" name="price" value="<?php echo e(old("price")); ?>" type="text" class="form-control"
+                                                placeholder="Price">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="price">Quantity</label>
+                                            <input id="quntity" name="quantity" value="<?php echo e(old("quantity")); ?>" type="number" class="form-control"
+                                                placeholder="Quntity">
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="manufacturername">Manufacturer Name</label>
-                                <input id="manufacturername" name="manufacturername" type="text" class="form-control"
-                                    placeholder="Manufacturer Name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="manufacturerbrand">Manufacturer Brand</label>
-                                <input id="manufacturerbrand" name="manufacturerbrand" type="text" class="form-control"
-                                    placeholder="Manufacturer Brand">
-                            </div>
-                            <div class="mb-3">
-                                <label for="price">Price</label>
-                                <input id="price" name="price" type="text" class="form-control"
-                                    placeholder="Price">
+
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="control-label">Category</label>
+                                    <select class="form-control select2" name = "category" value="<?php echo e(old("category")); ?>">
+                                        <option>Select</option>
+                                        <option value="FA">Fashion</option>
+                                        <option value="EL">Electronic</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="control-label">Feature</label>
+
+                                    <select class="select2 form-control select2-multiple" name = "features" value="<?php echo e(old("features")); ?>"  multiple="multiple"
+                                        data-placeholder="Choose ...">
+                                        <option value="WI">Wireless</option>
+                                        <option value="BE">Battery life</option>
+                                        <option value="BA">Bass</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="productdesc">Product Description</label>
+                                    <textarea class="form-control" id="productdesc" name = "description" value="<?php echo e(old("description")); ?>" rows="5" placeholder="Product Description"></textarea>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
-                            <div class="mb-3">
-                                <label class="control-label">Category</label>
-                                <select class="form-control select2">
-                                    <option>Select</option>
-                                    <option value="FA">Fashion</option>
-                                    <option value="EL">Electronic</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="control-label">Features</label>
-
-                                <select class="select2 form-control select2-multiple" multiple="multiple"
-                                    data-placeholder="Choose ...">
-                                    <option value="WI">Wireless</option>
-                                    <option value="BE">Battery life</option>
-                                    <option value="BA">Bass</option>
-                                </select>
-
-                            </div>
-                            <div class="mb-3">
-                                <label for="productdesc">Product Description</label>
-                                <textarea class="form-control" id="productdesc" rows="5" placeholder="Product Description"></textarea>
-                            </div>
-
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save Product</button>
+                            
                         </div>
-                    </div>
-
-                    <div class="d-flex flex-wrap gap-2">
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
-                        <button type="reset" class="btn btn-secondary waves-effect waves-light">Cancel</button>
-                    </div>
                     </form>
-
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title mb-0">Product Images</h4>
-                </div>
-                <div class="card-body">
-                    <form action="/" method="post" class="dropzone">
-                        <div class="fallback">
-                            <input name="file" type="file" multiple />
-                        </div>
-                        <div class="dz-message needsclick">
-                            <div class="mb-3">
-                                <i class="display-4 text-muted bx bxs-cloud-upload"></i>
-                            </div>
-                            <h4>Drop files here or click to upload.</h4>
-                        </div>
-                    </form>
-                </div>
+            
 
-            </div> <!-- end card-->
+            <!-- end card-->
 
             
         </div>

@@ -19,7 +19,7 @@
                             <div class="auth-content my-auto">
                                 <div class="text-center">
                                     <h5 class="mb-0">Welcome Back !</h5>
-                                    <p class="text-muted mt-2">Sign in to continue to Dason.</p>
+                                    <p class="text-muted mt-2">Sign in to continue to Zoidinc Supplier Admin Console.</p>
                                 </div>
                                 <form class="mt-4 pt-2" action="{{ route('login') }}" method="POST">
                                     @csrf
@@ -67,7 +67,7 @@
                                         <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In</button>
                                     </div>
                                 </form>
-
+{{--
                                 <div class="mt-4 pt-2 text-center">
                                     <div class="signin-other-title">
                                         <h5 class="font-size-14 mb-3 text-muted fw-medium">- Sign in with -</h5>
@@ -93,15 +93,15 @@
                                             </a>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> --}}
 
-                                <div class="mt-5 text-center">
+                                {{-- <div class="mt-5 text-center">
                                     <p class="text-muted mb-0">Don't have an account ? <a href="{{ url('register') }}"
                                             class="text-primary fw-semibold"> Signup now </a> </p>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="mt-4 mt-md-5 text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Dason   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
+                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Zoidinc
                             </div>
                         </div>
                     </div>

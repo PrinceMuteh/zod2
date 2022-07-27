@@ -26,12 +26,14 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow"
-                                data-key="t-level-1-2"><?php echo app('translator')->get('translation.product_management'); ?></a>
+                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2">
+                                Product
+                                
+                            </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="ecommerce-add-product" data-key="t-add-product"><?php echo app('translator')->get('translation.Add_Product'); ?></a></li>
-
-                                <li><a href="maintenance" data-key="t-level-2-2"><?php echo app('translator')->get('translation.Products'); ?></a></li>
+                                <li><a href="<?php echo e(route('product.view')); ?>" data-key="t-level-2-2"><?php echo app('translator')->get('translation.Products'); ?></a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -45,11 +47,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Sub Category</a>
+                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Category</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="maintenance" data-key="t-level-2-1">Add Sub Category</a></li>
-                                <li><a href="maintenance" data-key="t-level-2-1">All Sub Category</a></li>
-
+                                <li><a href="<?php echo e(route('category.add')); ?>" data-key="t-level-2-1">Add Category</a></li>
+                                <li><a href="<?php echo e(route('category.view')); ?> " data-key="t-level-2-1">All Category</a></li>
                             </ul>
                         </li>
                         <li>
@@ -161,10 +162,11 @@
 
 
                 </li>
-                <li><a href="javascript: void(0);" data-key="t-login">    <i data-feather="briefcase"></i> Support</a></li>
+                <li><a href="javascript: void(0);" data-key="t-login"> <i data-feather="briefcase"></i> Support</a>
+                </li>
 
             </ul>
-
+            
         </div>
         <!-- Sidebar -->
     </div>

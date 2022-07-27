@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id')->nullable();
+            $table->foreignId('category_id')->nullable();
+            $table->string('sub_name')->nullable();
+            $table->string('sub_description')->nullable();
             $table->timestamps();
         });
     }
