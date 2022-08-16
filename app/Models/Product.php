@@ -10,11 +10,18 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_name',
-        'manufacturer_name',
-        'manufacturer_brand',
-        'quantity',
-        'price',
-        'description',
+        'pTitle',
+        'pCategoty',
+        'qty',
+        'pOldPrice',
+        'pSellingPrice',
+        'shortDescription',
+        'label',
+        'pImage',
+        'todayDeal',
+        'featured',
+        'publish',
+        'manu_name',
+        'manu_brand',
     ];
 }

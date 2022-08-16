@@ -5,18 +5,18 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60">
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid.png')); ?>" alt="" height="60">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60"> </span>
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid.png')); ?>" alt="" height="60"> </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60">
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid.png')); ?>" alt="" height="60">
                     </span>
                     <span class="logo-lg">
-                        <img src="<?php echo e(URL::asset('assets/images/Zoid2.png')); ?>" alt="" height="60"> </span>
+                        <img src="<?php echo e(URL::asset('assets/images/Zoid.png')); ?>" alt="" height="60"> </span>
                 </a>
             </div>
 
@@ -56,25 +56,7 @@
             </div>
 
             <div class="dropdown d-none d-sm-inline-block">
-                <button type="button" class="btn header-item waves-effect"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <?php switch(Session::get('lang')):
-                    case ('ru'): ?>
-                        <img src="<?php echo e(URL::asset('/assets/images/flags/russia.jpg')); ?>" alt="Header Language" height="16">
-                    <?php break; ?>
-                    <?php case ('it'): ?>
-                        <img src="<?php echo e(URL::asset('/assets/images/flags/italy.jpg')); ?>" alt="Header Language" height="16">
-                    <?php break; ?>
-                    <?php case ('de'): ?>
-                        <img src="<?php echo e(URL::asset('/assets/images/flags/germany.jpg')); ?>" alt="Header Language" height="16">
-                    <?php break; ?>
-                    <?php case ('es'): ?>
-                        <img src="<?php echo e(URL::asset('/assets/images/flags/spain.jpg')); ?>" alt="Header Language" height="16">
-                    <?php break; ?>
-                    <?php default: ?>
-                        <img src="<?php echo e(URL::asset('/assets/images/flags/us.jpg')); ?>" alt="Header Language" height="16">
-                <?php endswitch; ?>
-            </button>
+                
             <div class="dropdown-menu dropdown-menu-end">
 
                 <!-- item-->
@@ -146,7 +128,7 @@
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="<?php if(Auth::user()->avatar != ''): ?><?php echo e(URL::asset('images/'. Auth::user()->avatar)); ?><?php else: ?><?php echo e(URL::asset('assets/images/users/avatar-1.png')); ?><?php endif; ?>" alt="Header Avatar">
+                    <img class="rounded-circle header-profile-user" src="<?php if(Auth::user()->avatar != ''): ?><?php echo e(URL::asset(Auth::user()->avatar)); ?><?php else: ?><?php echo e(URL::asset('assets/images/users/avatar-1.jpg')); ?><?php endif; ?>" alt="Header Avatar">
                     <span class="d-none d-xl-inline-block ms-1 fw-medium"><?php echo e(Auth::user()->name); ?></span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>

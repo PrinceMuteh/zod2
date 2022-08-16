@@ -5,82 +5,51 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Facades\DB;
 
-class OrderController extends Controller
-{
+class OrderController extends Controller {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+
+    public function index() {
+        $orders = DB::table( 'orders' )
+        ->join( 'users', 'users.id', '=', 'orders.userId' )
+        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+        ->get();
+
+        // dd( $orders );
+        return view( 'Ecommerce/order-all', [ 'orders' => $orders ] );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function cancelledOrders() {
+        $orders = DB::table( 'orders' )
+        ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'cancelled' )
+        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+        ->get();
+        return view( 'Ecommerce/order-cancelled', [ 'orders' => $orders ] );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreOrderRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreOrderRequest $request)
-    {
-        //
+    public function pendingOrders() {
+        $orders = DB::table( 'orders' )
+        ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'pending' )
+        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+        ->get();
+        return view( 'Ecommerce/order-pending', [ 'orders' => $orders ] );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
+    public function completedOrders() {
+        $orders = DB::table( 'orders' )
+        ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'Paid' )
+        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+        ->get();
+        return view( 'Ecommerce/order-completed', [ 'orders' => $orders ] );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
-    }
 }

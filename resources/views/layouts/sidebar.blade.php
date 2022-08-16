@@ -8,7 +8,6 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" data-key="t-menu">@lang('translation.Menu')</li>
-
                 <li>
                     <a href="index">
                         <i data-feather="home"></i>
@@ -31,7 +30,9 @@
                                 {{-- @lang('translation.product_management') --}}
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="ecommerce-add-product" data-key="t-add-product">@lang('translation.Add_Product')</a></li>
+                                <li><a href="{{ route('product.add') }}" data-key="t-add-product">@lang('translation.Add_Product')</a>
+                                </li>
+
                                 <li><a href="{{ route('product.view') }}" data-key="t-level-2-2">@lang('translation.Products')</a>
                                 </li>
                             </ul>
@@ -40,10 +41,13 @@
                             <a href="javascript: void(0);" class="has-arrow"
                                 data-key="t-level-1-2">@lang('translation.orders')</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="maintenance" data-key="t-level-2-1">@lang('translation.all_orders')</a></li>
-                                <li><a href="maintenance" data-key="t-level-2-1">@lang('translation.cancelled_orders')</a></li>
-                                <li><a href="maintenance" data-key="t-level-2-2">@lang('translation.pending_orders')</a></li>
-                                <li><a href="maintenance" data-key="t-level-2-2">@lang('translation.completed_orders')</a></li>
+                                <li><a href="{{ route('all.orders') }}" data-key="t-level-2-1">All Orders</a></li>
+                                <li><a href="{{ route('cancelled.orders') }}" data-key="t-level-2-1">Cancelled
+                                        Orders</a></li>
+                                <li><a href="{{ route('pending.orders') }}" data-key="t-level-2-2">Pending Orders</a>
+                                </li>
+                                <li><a href="{{ route('completed.orders') }}" data-key="t-level-2-2">Completed
+                                        Orders</a></li>
                             </ul>
                         </li>
                         <li>
@@ -56,16 +60,16 @@
                         <li>
                             <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Sub Category</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="javascript: void(0);" data-key="t-level-2-1">Add Sub Category</a></li>
-                                <li><a href="javascript: void(0);" data-key="t-level-2-1">All Sub Category</a></li>
+                                <li><a href="{{ route('sub.add') }}" data-key="t-level-2-1">Add Sub Category</a></li>
+                                <li><a href="{{ route('sub.view') }}" data-key="t-level-2-1">All Sub Category</a></li>
 
                             </ul>
                         </li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Brands</a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="maintenance" data-key="t-level-2-1">Add Brands</a></li>
-                                <li><a href="maintenance" data-key="t-level-2-1">All Brands</a></li>
+                                <li><a href="{{ route('brand.add') }}" data-key="t-level-2-1">Add Brands</a></li>
+                                <li><a href="{{ route('brand.view') }}" data-key="t-level-2-1">All Brands</a></li>
 
                             </ul>
                         </li>
@@ -159,14 +163,20 @@
                 <li class="menu-title mt-2" data-key="t-components">Setting</li>
 
                 <li>
+                    <a href="{{ route('view.user') }}">
+                        <i data-feather="user"></i>
+                        <span data-key="t-email">All Account</span>
+                    </a>
+                </li>
+
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="briefcase"></i>
                         <span data-key="t-components">Account</span>
                     </a>
-
-
-                </li>
-                <li><a href="javascript: void(0);" data-key="t-login"> <i data-feather="briefcase"></i> Support</a>
+                </li> --}}
+                <li>
+                    <a href="javascript: void(0);" data-key="t-login"> <i data-feather="briefcase"></i> Support</a>
                 </li>
 
             </ul>

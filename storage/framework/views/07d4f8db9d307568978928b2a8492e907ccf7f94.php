@@ -61,6 +61,18 @@
     <script src="<?php echo e(URL::asset('assets/libs/table-edits/table-edits.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/js/pages/table-editable.int.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/js/app.min.js')); ?>"></script>
+<script>
+    $("table tr td").editable({
+
+    save: function(values) {
+      var id = $(this).data('id-field');
+    //   var id = $(this).children();
+
+      console.log(id);
+    //   $.post('/api/object/' + id, values);
+    }
+});
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\zoidinc\vendor Dashboard\resources\views/ecommerce-view-product.blade.php ENDPATH**/ ?>

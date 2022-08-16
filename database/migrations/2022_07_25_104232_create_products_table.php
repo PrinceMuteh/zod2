@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('product_name')->nullable();
+            $table->string('sku')->nullable();
             $table->string('manufacturer_name')->nullable();
             $table->string('manufacturer_brand')->nullable();
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('users_iCd')->nullable();
             $table->foreignId('categories_id')->nullable();
             $table->unsignedBigInteger('quantity')->nullable();
             $table->unsignedBigInteger('price')->nullable();

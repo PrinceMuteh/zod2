@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('users_id')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('product_id')->nullable();
-            $table->string('status')->nullable();       
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

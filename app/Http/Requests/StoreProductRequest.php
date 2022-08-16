@@ -23,14 +23,15 @@ class StoreProductRequest extends FormRequest {
 
     public function rules() {
         return [
-            'product_name' =>'required|max:20',
-            'manufacturer_name' =>'required|max:20',
-            'manufacturer_brand' =>'required|max:20',
-            'quantity' =>'required|numeric',
-            'price' =>'required|numeric',
-            'description' =>'required',
-
+            'pTitle' =>'required|max:20',
+            'manu_name' =>'required|max:20',
+            'manu_brand' =>'required|max:20',
+            'qty' =>'required|numeric',
+            'pOldPrice' =>'required|numeric',
+            'pSellingPrice' =>'required|numeric',
+            'shortDescription' =>'required',
         ];
+
     }
 
     public function messages() {
