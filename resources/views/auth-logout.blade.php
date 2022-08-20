@@ -12,7 +12,7 @@
                         <div class="d-flex flex-column h-100">
                             <div class="mb-4 mb-md-5 text-center">
                                 <a href="index" class="d-block auth-logo">
-                                    <img src="{{ URL::asset('assets/images/logo-sm.svg') }}" alt="" height="28"> <span class="logo-txt">Dason</span>
+                                    <img src="{{ URL::asset('assets/images/logo-sm.svg') }}" alt="" height="28"> <span class="logo-txt">Zoidinc</span>
                                 </a>
                             </div>
                             <div class="auth-content my-auto">
@@ -25,7 +25,7 @@
 
                                     <div class="mt-4 pt-2">
                                         <h5>You are Logged Out</h5>
-                                        <p class="text-muted font-size-15">Thank you for using <span class="fw-semibold text-dark">Dason</span></p>
+                                        <p class="text-muted font-size-15">Thank you for using <span class="fw-semibold text-dark">Zoidinc</span></p>
                                         <div class="mt-4">
                                             <a href="login" class="btn btn-primary w-100 waves-effect waves-light">Sign In</a>
                                         </div>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 mt-md-5 text-center">
-                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Dason   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
+                                <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Zoidinc   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
                             </div>
                         </div>
                     </div>

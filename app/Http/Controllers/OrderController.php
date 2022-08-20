@@ -15,40 +15,76 @@ class OrderController extends Controller {
     */
 
     public function index() {
-        $orders = DB::table( 'orders' )
-        ->join( 'users', 'users.id', '=', 'orders.userId' )
-        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
-        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
-        ->get();
+        if ( Auth()->user()->usertype == 'super' || Auth()->user()->usertype == 'admin' ) {
 
+            $orders = DB::table( 'orders' )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+        } else {
+            $orders = DB::table( 'orders' )->where( 'vendorId', Auth()->user()->id )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+        }
         // dd( $orders );
         return view( 'Ecommerce/order-all', [ 'orders' => $orders ] );
     }
 
     public function cancelledOrders() {
-        $orders = DB::table( 'orders' )
-        ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'cancelled' )
-        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
-        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
-        ->get();
+        if ( Auth()->user()->usertype == 'super' || Auth()->user()->usertype == 'admin' ) {
+            $orders = DB::table( 'orders' )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'cancelled' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+        } else {
+            $orders = DB::table( 'orders' )->where( 'vendorId', Auth()->user()->id )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'cancelled' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+        }
         return view( 'Ecommerce/order-cancelled', [ 'orders' => $orders ] );
     }
 
     public function pendingOrders() {
-        $orders = DB::table( 'orders' )
-        ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'pending' )
-        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
-        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
-        ->get();
-        return view( 'Ecommerce/order-pending', [ 'orders' => $orders ] );
+        if ( Auth()->user()->usertype == 'super' || Auth()->user()->usertype == 'admin' ) {
+            $orders = DB::table( 'orders' )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'pending' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+            return view( 'Ecommerce/order-pending', [ 'orders' => $orders ] );
+        } else {
+            $orders = DB::table( 'orders' )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )
+            ->where( 'status', 'pending' )
+            ->where( 'vendorId', Auth()->user()->id )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+            return view( 'Ecommerce/order-pending', [ 'orders' => $orders ] );
+
+        }
     }
 
     public function completedOrders() {
-        $orders = DB::table( 'orders' )
-        ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'Paid' )
-        ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
-        ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
-        ->get();
+        if ( Auth()->user()->usertype == 'super' || Auth()->user()->usertype == 'admin' ) {
+            $orders = DB::table( 'orders' )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'Paid' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+        } else {
+            $orders = DB::table( 'orders' )->where( 'vendorId', Auth()->user()->id )
+            ->join( 'users', 'users.id', '=', 'orders.userId' )->where( 'status', 'Paid' )
+            ->join( 'categories', 'categories.id', '=', 'orders.categoryId' )
+            ->select( 'orders.*', 'users.name', 'users.email', 'categories.*' )
+            ->get();
+        }
         return view( 'Ecommerce/order-completed', [ 'orders' => $orders ] );
     }
 

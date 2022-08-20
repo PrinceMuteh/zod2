@@ -8,6 +8,7 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" data-key="t-menu"><?php echo app('translator')->get('translation.Menu'); ?></li>
+
                 <li>
                     <a href="index">
                         <i data-feather="home"></i>
@@ -17,7 +18,6 @@
                 </li>
 
                 <li class="menu-title" data-key="t-apps"><?php echo app('translator')->get('translation.Apps'); ?></li>
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="shopping-cart"></i>
@@ -50,70 +50,73 @@
                                         Orders</a></li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Category</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="<?php echo e(route('category.add')); ?>" data-key="t-level-2-1">Add Category</a></li>
-                                <li><a href="<?php echo e(route('category.view')); ?> " data-key="t-level-2-1">All Category</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Sub Category</a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="<?php echo e(route('sub.add')); ?>" data-key="t-level-2-1">Add Sub Category</a></li>
-                                <li><a href="<?php echo e(route('sub.view')); ?>" data-key="t-level-2-1">All Sub Category</a></li>
+                        <?php if(Auth()->user()->usertype == 'Admin' || Auth()->user()->usertype == 'Super'): ?>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Category</a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li><a href="<?php echo e(route('category.add')); ?>" data-key="t-level-2-1">Add Category</a>
+                                    </li>
+                                    <li><a href="<?php echo e(route('category.view')); ?> " data-key="t-level-2-1">All Category</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Sub
+                                    Category</a>
+                                <ul class="sub-menu" aria-expanded="true">
+                                    <li><a href="<?php echo e(route('sub.add')); ?>" data-key="t-level-2-1">Add Sub Category</a>
+                                    </li>
+                                    <li><a href="<?php echo e(route('sub.view')); ?>" data-key="t-level-2-1">All Sub Category</a>
+                                    </li>
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                            <li><a href="ecommerce-products" key="t-products">Refund Request</a></li>
+
                         <li>
                             <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2"> Brands</a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="<?php echo e(route('brand.add')); ?>" data-key="t-level-2-1">Add Brands</a></li>
                                 <li><a href="<?php echo e(route('brand.view')); ?>" data-key="t-level-2-1">All Brands</a></li>
-
                             </ul>
                         </li>
-                        <li><a href="ecommerce-products" key="t-products">Refund Request</a></li>
-                        <li><a href="ecommerce-product-detail" data-key="t-product-detail">Reviews</a></li>
+                        <?php endif; ?>
+
+                        
                         
 
                     </ul>
                 </li>
+                <?php if(Auth()->user()->usertype == 'Admin' || Auth()->user()->usertype == 'Super'): ?>
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-feather="user"></i>
+                            <span data-key="t-email">Auctions</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="maintenance" data-key="t-inbox">Add Auction</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">All Auctions</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">Completed Auctions</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">Pending Auctions</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">Expire Auctions</a></li>
+                        </ul>
+                    </li>
 
-
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="user"></i>
-                        <span data-key="t-email">Auctions</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="maintenance" data-key="t-inbox">Add Auction</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">All Auctions</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">Completed Auctions</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">Pending Auctions</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">Expire Auctions</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow">
-                        <i data-feather="user"></i>
-                        <span data-key="t-email">Barter</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="maintenance" data-key="t-inbox">New Barter</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">All Barter</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">Completed Barter</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">Pending Barter</a></li>
-                        <li><a href="maintenance" data-key="t-read-email">Expired Barter</a></li>
-                    </ul>
-                </li>
-
-
-
+                    <li>
+                        <a href="javascript: void(0);" class="has-arrow">
+                            <i data-feather="user"></i>
+                            <span data-key="t-email">Barter</span>
+                        </a>
+                        <ul class="sub-menu" aria-expanded="false">
+                            <li><a href="maintenance" data-key="t-inbox">New Barter</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">All Barter</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">Completed Barter</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">Pending Barter</a></li>
+                            <li><a href="maintenance" data-key="t-read-email">Expired Barter</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
                 <li class="menu-title" data-key="t-pages"><?php echo app('translator')->get('translation.Pages'); ?></li>
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="layers"></i>
@@ -125,7 +128,6 @@
 
                     </ul>
                 </li>
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="file-text"></i>
@@ -139,7 +141,6 @@
 
                     </ul>
                 </li>
-
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="file-text"></i>
@@ -153,11 +154,7 @@
 
                     </ul>
                 </li>
-
-
-
                 <li class="menu-title mt-2" data-key="t-components">Setting</li>
-
                 <li>
                     <a href="<?php echo e(route('view.user')); ?>">
                         <i data-feather="user"></i>

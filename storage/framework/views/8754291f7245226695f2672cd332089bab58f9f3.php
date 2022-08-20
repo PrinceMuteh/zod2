@@ -28,7 +28,6 @@
                                     <th>Product Name</th>
                                     <th>Category</th>
                                     <th>Old Price</th>
-                                    <th>New Price</th>
                                     <th>quantity</th>
                                     <th>Label</th>
                                     <th>Status</th>
@@ -40,61 +39,91 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $__currentLoopData = $product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr data-id="<?php echo e($item->id); ?>">
-                                        <td data-field="price">
-                                            <img src="<?php echo e($item->pImage); ?>" height="100px" alt="" srcset="">
-                                        </td>
-                                        <td><?php echo e($item->sku); ?></td>
-                                        <td data-field="name"><?php echo e($item->pTitle); ?></td>
-                                        <td data-field="manufacturer"><?php echo e($item->pCategory); ?></td>
-                                        <td data-field="price"><?php echo e($item->pOldPrice); ?></td>
-                                        <td data-field="price"><?php echo e($item->pSellingPrice); ?></td>
-                                        <td data-field="price"><?php echo e($item->qty); ?></td>
-                                        <td data-field="price"><?php echo e($item->label); ?></td>
-                                        <td>
-                                            <?php if($item->status == 'Approved'): ?>
-                                                <div class="text-success"><?php echo e($item->status); ?></div>
-                                            <?php else: ?>
-                                                <div class="text-warning"><?php echo e($item->status); ?></div>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if($item->todayDeal == 'Yes'): ?>
-                                                <input type="checkbox" name="todayDeal" id="" checked>
-                                            <?php else: ?>
-                                                <input type="checkbox" name="todayDeal" id="">
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if($item->featured == 'Yes'): ?>
-                                                <input type="checkbox" name="todayDeal" id="" checked>
-                                            <?php else: ?>
-                                                <input type="checkbox" name="todayDeal" id="">
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <?php if($item->publish == 'Yes'): ?>
-                                                <input type="checkbox" name="todayDeal" id="" checked>
-                                            <?php else: ?>
-                                                <input type="checkbox" name="todayDeal" id="">
-                                            <?php endif; ?>
-                                        </td>
+                                <?php if(count($product) < 1): ?>
+                                    <div class="alert alert-warning" role="alert">
+                                        <h4 class="alert-heading">Empty</h4>
+                                        <p>No Product Found yet</p>
+                                        <p class="mb-0"></p>
+                                    </div>
+                                <?php else: ?>
+                                    <?php $__currentLoopData = $product; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr data-id="<?php echo e($item->id); ?>">
+                                            <td>
+                                                <a href="<?php echo e(route('product.single', ['id' => $item->id])); ?>">
+                                                    <img src="<?php echo e($item->pImage); ?>" height="80px" alt=""
+                                                        srcset="">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="<?php echo e(route('product.single', ['id' => $item->id])); ?>">
+                                                    <?php echo e($item->sku); ?>
 
-                                        
-                                        <td>
-                                            <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-outline-secondary btn-sm "
-                                                onclick="delete(<?php echo e($item->id); ?>)">
-                                                <i class="fas fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </a>
+                                            </td>
+                                            <td data-field="name">
+                                                <a href="<?php echo e(route('product.single', ['id' => $item->id])); ?>">
+                                                    <b> <?php echo e($item->pTitle); ?> </b> <br> $ <?php echo e($item->pSellingPrice); ?>
+
+                                                </a>
+                                            </td>
+                                            <td data-field="manufacturer"><?php echo e($item->pCategory); ?></td>
+                                            <td data-field="price"> $ <?php echo e(number_format($item->pOldPrice)); ?></td>
+                                            <td data-field="price">
+                                                <?php if($item->qty == 0): ?>
+                                                    Out Of Stock
+                                                <?php else: ?>
+                                                    Avialable
+                                                <?php endif; ?>
+                                                <br>
+                                                <?php echo e($item->qty); ?>
+
+                                            </td>
+                                            <td data-field="price"><?php echo e($item->label); ?></td>
+                                            <td>
+                                                <?php if($item->status == 'Approved'): ?>
+                                                    <div class="text-success"><?php echo e($item->status); ?></div>
+                                                <?php else: ?>
+                                                    <div class="text-warning"><?php echo e($item->status); ?></div>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($item->todayDeal == 'Yes'): ?>
+                                                    <input type="checkbox" name="todayDeal" id="" checked>
+                                                <?php else: ?>
+                                                    <input type="checkbox" name="todayDeal" id="">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($item->featured == 'Yes'): ?>
+                                                    <input type="checkbox" name="todayDeal" id="" checked>
+                                                <?php else: ?>
+                                                    <input type="checkbox" name="todayDeal" id="">
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($item->publish == 'Yes'): ?>
+                                                    <input type="checkbox" name="todayDeal" id="" checked>
+                                                <?php else: ?>
+                                                    <input type="checkbox" name="todayDeal" id="">
+                                                <?php endif; ?>
+                                            </td>
+
+                                            
+                                            <td>
+                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-outline-secondary btn-sm "
+                                                    onclick="delete(<?php echo e($item->id); ?>)">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endif; ?>
+
                             </tbody>
                         </table>
                     </div>

@@ -30,6 +30,10 @@ class StoreProductRequest extends FormRequest {
             'pOldPrice' =>'required|numeric',
             'pSellingPrice' =>'required|numeric',
             'shortDescription' =>'required',
+            'pCategory' =>'required',
+            'type' =>'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024',
+            
         ];
 
     }

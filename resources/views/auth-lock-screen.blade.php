@@ -1,9 +1,9 @@
 @extends('layouts.master-without-nav')
 @section('title')
-@lang('translation.Lock_Screen')
+    @lang('translation.Lock_Screen')
 @endsection
 @section('content')
-<div class="auth-page">
+    <div class="auth-page">
         <div class="container-fluid p-0">
             <div class="row g-0">
                 <div class="col-xxl-3 col-lg-4 col-md-5">
@@ -12,7 +12,8 @@
                             <div class="d-flex flex-column h-100">
                                 <div class="mb-4 mb-md-5 text-center">
                                     <a href="{{ url('index') }}" class="d-block auth-logo">
-                                        <img src="{{ URL::asset('assets/images/logo-sm.svg') }}" alt="" height="28"> <span class="logo-txt">Dason</span>
+                                        <img src="{{ URL::asset('assets/images/logo.png') }}" alt="" height="84">
+                                        {{-- <span class="logo-txt">Zoidinc</span> --}}
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
@@ -21,19 +22,22 @@
                                         <p class="text-muted mt-2">Enter your password to unlock the screen!</p>
                                     </div>
                                     <div class="user-thumb text-center mb-4 mt-4 pt-2">
-                                        <img src="@if (Auth::user()->avatar != ''){{ URL::asset('images/'. Auth::user()->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.png') }}@endif" class="rounded-circle img-thumbnail avatar-lg" alt="thumbnail">
-                                        <h5 class="font-size-15 mt-3">{{Auth::user()->name}}</h5>
+                                        <img src="@if (Auth::user()->avatar != '') {{  Auth::user()->avatar }}@else{{ URL::asset('assets/images/users/avatar-1.png') }} @endif"
+                                            class="rounded-circle img-thumbnail avatar-lg" alt="thumbnail">
+                                        <h5 class="font-size-15 mt-3">{{ Auth::user()->name }}</h5>
                                     </div>
                                     <form class="mt-4" action="{{ url('index') }}">
                                         <div class="form-floating form-floating-custom mb-4">
-                                            <input type="password" class="form-control" id="input-password" placeholder="Enter Password" >
+                                            <input type="password" class="form-control" id="input-password"
+                                                placeholder="Enter Password">
                                             <label for="input-password">Password</label>
                                             <div class="form-floating-icon">
                                                 <i data-feather="lock"></i>
                                             </div>
                                         </div>
                                         <div class="mb-3 mt-4">
-                                            <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Unlock</button>
+                                            <button class="btn btn-primary w-100 waves-effect waves-light"
+                                                type="submit">Unlock</button>
                                         </div>
                                     </form>
 
@@ -43,7 +47,11 @@
                                     </div>
                                 </div>
                                 <div class="mt-4 mt-md-5 text-center">
-                                    <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Dason   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign</p>
+                                    <p class="mb-0">©
+                                        <script>
+                                            document.write(new Date().getFullYear())
+                                        </script> Zoidinc
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -71,18 +79,9 @@
                             <div class="col-xl-7">
                                 <div class="p-0 p-sm-4 px-xl-0">
                                     <div id="reviewcarouselIndicators" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-indicators auth-carousel carousel-indicators-rounded justify-content-center mb-0">
-                                            <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
-                                                <img src="{{ URL::asset('assets/images/users/avatar-1.jpg') }}" class="avatar-md img-fluid rounded-circle d-block" alt="...">
-                                            </button>
-                                            <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2">
-                                                <img src="{{ URL::asset('assets/images/users/avatar-2.jpg') }}" class="avatar-md img-fluid rounded-circle d-block" alt="...">
-                                            </button>
-                                            <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3">
-                                                <img src="{{ URL::asset('assets/images/users/avatar-3.jpg') }}" class="avatar-md img-fluid rounded-circle d-block" alt="...">
-                                            </button>
-                                        </div>
-                                        <!-- end carouselIndicators -->
+
+
+                                        {{-- <!-- end carouselIndicators -->
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
                                                 <div class="testi-contain text-center text-white">
@@ -136,7 +135,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- end carousel-inner -->
+                                        <!-- end carousel-inner --> --}}
+
+
+
                                     </div>
                                     <!-- end review carousel -->
                                 </div>
@@ -149,7 +151,7 @@
             <!-- end row -->
         </div>
         <!-- end container fluid -->
-</div>
+    </div>
 @endsection
 @section('script')
     <script src="{{ URL::asset('assets/js/pages/feather-icon.init.js') }}"></script>

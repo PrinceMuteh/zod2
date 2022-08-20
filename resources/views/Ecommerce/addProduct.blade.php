@@ -30,26 +30,45 @@
                 @if ($type == 'view')
                     <div class="card-body">
 
-                        <form action="{{ route('product.store') }}" method="post">
+                        <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <div class="row mb-3">
+                                <label for="pTitle">Product Type</label>
+
+                                <select class="form-control select2" name="type" value="{{ old('type') }}" required>
+                                    <option value="Product"> Product </option>
+                                    <option value="Food"> Food </option>
+                                    <option value="Fashion"> Fashion </option>
+                                    <option value="Drinks"> Drinks </option>
+                                    {{-- @foreach ($category as $item)
+                                    <option value="{{ $item->category }}"> {{ $item->category }}
+                                    </option>
+                                @endforeach --}}
+                                </select>
+                            </div>
+                            <hr>
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <label for="pTitle">Product Name</label>
-                                        <input id="pTitle" value="{{ old('pTitle') }}" name="pTitle"
-                                            type="text" class="form-control" placeholder="Product Name">
+                                        <input id="pTitle" value="{{ old('pTitle') }}" name="pTitle" type="text"
+                                            class="form-control" placeholder="Product Name" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="manufacturername">Manufacturer Name</label>
-                                        <input id="manu_name" value="{{ old('manu_name') }}"
-                                            name="manu_name" type="text" class="form-control"
-                                            placeholder="Manufacturer Name">
+                                        <input id="manu_name" value="{{ old('manu_name') }}" name="manu_name" type="text"
+                                            class="form-control" placeholder="Manufacturer Name" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="manu_brand">Manufacturer Brand</label>
-                                        <input id="manu_brand" value="{{ old('manu_brand') }}"
-                                            name="manu_brand" type="text" class="form-control"
-                                            placeholder="Manufacturer Brand">
+                                        <input id="manu_brand" value="{{ old('manu_brand') }}" name="manu_brand"
+                                            type="text" class="form-control" placeholder="Manufacturer Brand" >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="manu_brand">Default Image</label>
+                                        <input id="image" value="{{ old('image') }}" name="image" type="file"
+                                            class="form-control" placeholder="Manufacturer Brand" required>
                                     </div>
                                     <div class="mb-3">
                                         <div class="row">
@@ -62,7 +81,7 @@
                                                 <label for="price">Selling Price</label>
                                                 <input id="price" name="pSellingPrice"
                                                     value="{{ old('pSellingPrice') }}" type="text" class="form-control"
-                                                    placeholder="SellingPrice">
+                                                    placeholder="SellingPrice" required>
                                             </div>
 
                                         </div>
@@ -75,8 +94,8 @@
                                             <div class="col-sm-6">
                                                 <label class="control-label">Category</label>
                                                 <select class="form-control select2" name="pCategory"
-                                                    value="{{ old('pCategory') }}">
-                                                    <option>Select</option>
+                                                    value="{{ old('pCategory') }}" required>
+                                                    
                                                     @foreach ($category as $item)
                                                         <option value="{{ $item->category }}"> {{ $item->category }}
                                                         </option>
@@ -84,48 +103,78 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label class="control-label">Label</label>
-                                                <select class="form-control select2" name="label"
-                                                    value="{{ old('label') }}">
-                                                    <option>Select</option>
-                                                    <option value="Top">Top Deals </option>
-                                                    <option value="Trending">Trending </option>
-                                                    <option value="New">New </option>
+                                                <label class="control-label">Sub Category</label>
+                                                <input type="text" class="form-control" name="pSubCategory"
+                                                    id="">
 
-                                                    {{-- @foreach ($category as $item)
-                                                        <option value="{{ $item->category }}"> {{ $item->category_name }}
-                                                        </option>
-                                                    @endforeach --}}
-                                                </select>
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="mb-3">
                                         <div class="row">
-
-
-                                            <div class="col-sm-6">
-                                                <label class="control-label">Feature</label>
-                                                <select class="select2 form-control select2-multiple" name="features"
-                                                    value="{{ old('features') }}" multiple="multiple"
-                                                    data-placeholder="Choose ...">
-                                                    <option value="WI">Wireless</option>
-                                                    <option value="BE">Battery life</option>
-                                                    <option value="BA">Bass</option>
-                                                </select>
-                                            </div>
                                             <div class="col-sm-6">
                                                 <label for="qty">Quantity</label>
                                                 <input id="qty" name="qty" value="{{ old('qty') }}"
-                                                    type="number" class="form-control" placeholder="Quntity">
+                                                    type="number" class="form-control" placeholder="Quntity" required>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label">Label</label>
+                                                <select class="form-control select2" name="label"
+                                                    value="{{ old('label') }}" required>
+                                                    <option>Select</option>
+                                                    <option value="Top">Top Deals </option>
+                                                    <option value="Trending">Trending </option>
+                                                    <option value="New">New </option>
+
+                                                    {{-- @foreach ($category as $item)
+                                                    <option value="{{ $item->category }}"> {{ $item->category_name }}
+                                                    </option>
+                                                @endforeach --}}
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="productdesc">Product Description</label>
-                                        <textarea class="form-control" id="shortDescription" name="shortDescription" value="{{ old('shortDescription') }}" rows="5"
-                                            placeholder="Product Description"></textarea>
+
+                                        <label class="control-label">Feature</label>
+                                        <select class="select2 form-control select2-multiple" name="featured[]"
+                                            value="{{ old('featured') }}" multiple="multiple"
+                                            data-placeholder="Choose ..." required>
+                                            <option value="WI">Wireless</option>
+                                            <option value="BE">Battery life</option>
+                                            <option value="BA">Bass</option>
+                                        </select>
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="control-label">Color</label>
+                                        <select class="select2 form-control select2-multiple" name="color[]"
+                                            value="{{ old('color') }}" multiple="multiple"
+                                            data-placeholder="Choose ..." required>
+                                            <option value="Black">Black</option>
+                                            <option value="White">White</option>
+                                            <option value="Red">Red</option>
+                                            <option value="Blue">Blue</option>
+                                            <option value="Green">Green</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="control-label">Size</label>
+                                        <select class="select2 form-control select2-multiple" name="size[]"
+                                            value="{{ old('size') }}" multiple="multiple"
+                                            data-placeholder="Choose ..." required>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productdesc">Short Description</label>
+                                        <textarea class="form-control" id="shortDescription" name="shortDescription" value="{{ old('shortDescription') }}"
+                                            rows="5" placeholder="Short Description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -139,9 +188,10 @@
                     </div>
                 @else
                     <div class="card-body">
-                        <form action="{{ route('droppzone.store') }}" method="post" class="dropzone"
+                        <form action="{{ route('droppzone.pstore') }}" method="post" class="dropzone"
                             id="image-upload">
-                            <input type="hidden" name="sku" value = "{{$sku}}">
+                            <input type="hidden" name="sku" value="{{ $sku }}">
+                            <input type="hidden" name="id" value="{{ $id }}">
                             <input type="hidden" name="type" value="Product">
                             @csrf
                             <div class="fallback">
@@ -154,7 +204,7 @@
                                 <h4>Drop files here or click to upload.</h4>
                             </div>
                         </form>
-                        <a href="{{ route('product.index') }}" class="btn btn-primary mt-2 btn-lg"> Done </a>
+                        <a href="{{ route('product.view') }}" class="btn btn-primary mt-2 btn-lg"> Done </a>
                     </div>
                 @endif
             </div>

@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col justify-content-end">
                             <div class="col">
-                                <a href="<?php echo e(route("create.user")); ?>" class="btn btn-primary"> Add Account </a>
+                                <a href="<?php echo e(route('create.user')); ?>" class="btn btn-primary"> Add Account </a>
                             </div>
                         </div>
                     </div>
@@ -41,28 +41,32 @@
                             <tbody>
                                 <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td><?php echo e($item->name); ?></td>
+                                        <td>
+                                            <a href="<?php echo e(route('user.single',['id' => $item->id])); ?>">
+                                                <?php echo e($item->name); ?>
+
+                                            </a>
+                                        </td>
                                         <td><?php echo e($item->email); ?></td>
                                         <td><?php echo e($item->usertype); ?></td>
 
                                         <td>
-                                            <a href = "<?php echo e(route("edit.user",['id' => $item->id])); ?>" class="btn btn-outline-secondary btn-sm " title="Edit">
+                                            <a href="<?php echo e(route('edit.user', ['id' => $item->id])); ?>"
+                                                class="btn btn-outline-secondary btn-sm " title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-outline-secondary btn-sm " title="Delete">
+                                            <a class="btn btn-outline-secondary btn-sm"
+                                                onclick="deleteAccount(<?php echo e($item->id); ?>)" title="Delete">
                                                 <i class="fas fa-times"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div> <!-- end col -->
@@ -72,6 +76,13 @@
     <script src="<?php echo e(URL::asset('assets/libs/table-edits/table-edits.min.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/js/pages/table-editable.int.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('assets/js/app.min.js')); ?>"></script>
+
+    <script>
+        function deleteAccount(id) {
+            // confirm();
+            console.log(id);
+        }
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\zoidinc\vendor Dashboard\resources\views/users/index.blade.php ENDPATH**/ ?>

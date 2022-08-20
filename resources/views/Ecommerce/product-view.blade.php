@@ -29,7 +29,6 @@
                                     <th>Product Name</th>
                                     <th>Category</th>
                                     <th>Old Price</th>
-                                    <th>New Price</th>
                                     <th>quantity</th>
                                     <th>Label</th>
                                     <th>Status</th>
@@ -41,61 +40,88 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($product as $item)
-                                    <tr data-id="{{ $item->id }}">
-                                        <td data-field="price">
-                                            <img src="{{ $item->pImage }}" height="100px" alt="" srcset="">
-                                        </td>
-                                        <td>{{ $item->sku }}</td>
-                                        <td data-field="name">{{ $item->pTitle }}</td>
-                                        <td data-field="manufacturer">{{ $item->pCategory }}</td>
-                                        <td data-field="price">{{ $item->pOldPrice }}</td>
-                                        <td data-field="price">{{ $item->pSellingPrice }}</td>
-                                        <td data-field="price">{{ $item->qty }}</td>
-                                        <td data-field="price">{{ $item->label }}</td>
-                                        <td>
-                                            @if ($item->status == 'Approved')
-                                                <div class="text-success">{{ $item->status }}</div>
-                                            @else
-                                                <div class="text-warning">{{ $item->status }}</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($item->todayDeal == 'Yes')
-                                                <input type="checkbox" name="todayDeal" id="" checked>
-                                            @else
-                                                <input type="checkbox" name="todayDeal" id="">
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($item->featured == 'Yes')
-                                                <input type="checkbox" name="todayDeal" id="" checked>
-                                            @else
-                                                <input type="checkbox" name="todayDeal" id="">
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($item->publish == 'Yes')
-                                                <input type="checkbox" name="todayDeal" id="" checked>
-                                            @else
-                                                <input type="checkbox" name="todayDeal" id="">
-                                            @endif
-                                        </td>
+                                @if (count($product) < 1)
+                                    <div class="alert alert-warning" role="alert">
+                                        <h4 class="alert-heading">Empty</h4>
+                                        <p>No Product Found yet</p>
+                                        <p class="mb-0"></p>
+                                    </div>
+                                @else
+                                    @foreach ($product as $item)
+                                        <tr data-id="{{ $item->id }}">
+                                            <td>
+                                                <a href="{{ route('product.single', ['id' => $item->id]) }}">
+                                                    <img src="{{ $item->pImage }}" height="80px" alt=""
+                                                        srcset="">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('product.single', ['id' => $item->id]) }}">
+                                                    {{ $item->sku }}
+                                                </a>
+                                            </td>
+                                            <td data-field="name">
+                                                <a href="{{ route('product.single', ['id' => $item->id]) }}">
+                                                    <b> {{ $item->pTitle }} </b> <br> $ {{ $item->pSellingPrice }}
+                                                </a>
+                                            </td>
+                                            <td data-field="manufacturer">{{ $item->pCategory }}</td>
+                                            <td data-field="price"> $ {{ number_format($item->pOldPrice) }}</td>
+                                            <td data-field="price">
+                                                @if ($item->qty == 0)
+                                                    Out Of Stock
+                                                @else
+                                                    Avialable
+                                                @endif
+                                                <br>
+                                                {{ $item->qty }}
+                                            </td>
+                                            <td data-field="price">{{ $item->label }}</td>
+                                            <td>
+                                                @if ($item->status == 'Approved')
+                                                    <div class="text-success">{{ $item->status }}</div>
+                                                @else
+                                                    <div class="text-warning">{{ $item->status }}</div>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item->todayDeal == 'Yes')
+                                                    <input type="checkbox" name="todayDeal" id="" checked>
+                                                @else
+                                                    <input type="checkbox" name="todayDeal" id="">
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item->featured == 'Yes')
+                                                    <input type="checkbox" name="todayDeal" id="" checked>
+                                                @else
+                                                    <input type="checkbox" name="todayDeal" id="">
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item->publish == 'Yes')
+                                                    <input type="checkbox" name="todayDeal" id="" checked>
+                                                @else
+                                                    <input type="checkbox" name="todayDeal" id="">
+                                                @endif
+                                            </td>
 
-                                        {{-- <td data-field="gender"></td> --}}
-                                        <td>
-                                            <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
-                                                <i class="fas fa-pencil-alt"></i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-outline-secondary btn-sm "
-                                                onclick="delete({{ $item->id }})">
-                                                <i class="fas fa-times"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                            {{-- <td data-field="gender"></td> --}}
+                                            <td>
+                                                <a class="btn btn-outline-secondary btn-sm edit" title="Edit">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-outline-secondary btn-sm "
+                                                    onclick="delete({{ $item->id }})">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                             </tbody>
                         </table>
                     </div>

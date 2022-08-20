@@ -3,10 +3,9 @@
 @section('css')
 
 <link href="{{ URL::asset('/assets/libs/admin-resources/admin-resources.min.css') }}" rel="stylesheet">
-
 @endsection
-@section('content')
 
+@section('content')
 @component('components.breadcrumb')
 @slot('li_1') Dashboard @endslot
 @slot('title') Welcome ! @endslot
@@ -45,7 +44,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Items</span>
+                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Product</span>
                         <h4 class="mb-3">
                             <span class="counter-value" data-target="1256">0</span>
                         </h4>

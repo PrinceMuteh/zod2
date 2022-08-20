@@ -26,6 +26,18 @@ class DropzoneController extends Controller {
         return response()->json( [ 'success'=> $imagename ] );
     }
 
+    public function dropzoneStoreProductImage( Request $request ) {
+        $id = $request->id;
+        $image = $request->file( 'file' );
+        $imagename = time(). '.' . $image->extension();
+        $image->move( public_path( '/uploads/product/' ), $imagename );
+        $sql = DB::table( 'productimages' )->insert( [
+            'pId' => $id,
+            'image' =>  url( '' ).'/'.'/uploads/product/'.$imagename,
+        ] );
+        return response()->json( [ 'success'=> $imagename ] );
+    }
+
     public function dropzoneUpdate( Request $request ) {
         $image = $request->file( 'file' );
         $imagename = time(). '.' . $image->extension();

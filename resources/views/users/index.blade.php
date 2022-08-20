@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col justify-content-end">
                             <div class="col">
-                                <a href="{{route("create.user")}}" class="btn btn-primary"> Add Account </a>
+                                <a href="{{ route('create.user') }}" class="btn btn-primary"> Add Account </a>
                             </div>
                         </div>
                     </div>
@@ -42,28 +42,31 @@
                             <tbody>
                                 @foreach ($users as $item)
                                     <tr>
-                                        <td>{{ $item->name }}</td>
+                                        <td>
+                                            <a href="{{ route('user.single',['id' => $item->id]) }}">
+                                                {{ $item->name }}
+                                            </a>
+                                        </td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->usertype }}</td>
 
                                         <td>
-                                            <a href = "{{route("edit.user",['id' => $item->id])}}" class="btn btn-outline-secondary btn-sm " title="Edit">
+                                            <a href="{{ route('edit.user', ['id' => $item->id]) }}"
+                                                class="btn btn-outline-secondary btn-sm " title="Edit">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-outline-secondary btn-sm " title="Delete">
+                                            <a class="btn btn-outline-secondary btn-sm"
+                                                onclick="deleteAccount({{ $item->id }})" title="Delete">
                                                 <i class="fas fa-times"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
-
-
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div> <!-- end col -->
@@ -73,4 +76,11 @@
     <script src="{{ URL::asset('assets/libs/table-edits/table-edits.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/pages/table-editable.int.js') }}"></script>
     <script src="{{ URL::asset('assets/js/app.min.js') }}"></script>
+
+    <script>
+        function deleteAccount(id) {
+            // confirm();
+            console.log(id);
+        }
+    </script>
 @endsection

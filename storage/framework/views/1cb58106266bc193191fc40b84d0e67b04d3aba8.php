@@ -29,26 +29,42 @@
                 <?php if($type == 'view'): ?>
                     <div class="card-body">
 
-                        <form action="<?php echo e(route('product.store')); ?>" method="post">
+                        <form action="<?php echo e(route('product.store')); ?>" method="post" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
+                            <div class="row mb-3">
+                                <label for="pTitle">Product Type</label>
+
+                                <select class="form-control select2" name="type" value="<?php echo e(old('type')); ?>" required>
+                                    <option value="Product"> Product </option>
+                                    <option value="Food"> Food </option>
+                                    <option value="Fashion"> Fashion </option>
+                                    <option value="Drinks"> Drinks </option>
+                                    
+                                </select>
+                            </div>
+                            <hr>
+
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         <label for="pTitle">Product Name</label>
-                                        <input id="pTitle" value="<?php echo e(old('pTitle')); ?>" name="pTitle"
-                                            type="text" class="form-control" placeholder="Product Name">
+                                        <input id="pTitle" value="<?php echo e(old('pTitle')); ?>" name="pTitle" type="text"
+                                            class="form-control" placeholder="Product Name" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="manufacturername">Manufacturer Name</label>
-                                        <input id="manu_name" value="<?php echo e(old('manu_name')); ?>"
-                                            name="manu_name" type="text" class="form-control"
-                                            placeholder="Manufacturer Name">
+                                        <input id="manu_name" value="<?php echo e(old('manu_name')); ?>" name="manu_name" type="text"
+                                            class="form-control" placeholder="Manufacturer Name" required>
                                     </div>
                                     <div class="mb-3">
                                         <label for="manu_brand">Manufacturer Brand</label>
-                                        <input id="manu_brand" value="<?php echo e(old('manu_brand')); ?>"
-                                            name="manu_brand" type="text" class="form-control"
-                                            placeholder="Manufacturer Brand">
+                                        <input id="manu_brand" value="<?php echo e(old('manu_brand')); ?>" name="manu_brand"
+                                            type="text" class="form-control" placeholder="Manufacturer Brand" >
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="manu_brand">Default Image</label>
+                                        <input id="image" value="<?php echo e(old('image')); ?>" name="image" type="file"
+                                            class="form-control" placeholder="Manufacturer Brand" required>
                                     </div>
                                     <div class="mb-3">
                                         <div class="row">
@@ -61,7 +77,7 @@
                                                 <label for="price">Selling Price</label>
                                                 <input id="price" name="pSellingPrice"
                                                     value="<?php echo e(old('pSellingPrice')); ?>" type="text" class="form-control"
-                                                    placeholder="SellingPrice">
+                                                    placeholder="SellingPrice" required>
                                             </div>
 
                                         </div>
@@ -74,8 +90,8 @@
                                             <div class="col-sm-6">
                                                 <label class="control-label">Category</label>
                                                 <select class="form-control select2" name="pCategory"
-                                                    value="<?php echo e(old('pCategory')); ?>">
-                                                    <option>Select</option>
+                                                    value="<?php echo e(old('pCategory')); ?>" required>
+                                                    
                                                     <?php $__currentLoopData = $category; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($item->category); ?>"> <?php echo e($item->category); ?>
 
@@ -84,9 +100,25 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
+                                                <label class="control-label">Sub Category</label>
+                                                <input type="text" class="form-control" name="pSubCategory"
+                                                    id="">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label for="qty">Quantity</label>
+                                                <input id="qty" name="qty" value="<?php echo e(old('qty')); ?>"
+                                                    type="number" class="form-control" placeholder="Quntity" required>
+                                            </div>
+                                            <div class="col-sm-6">
                                                 <label class="control-label">Label</label>
                                                 <select class="form-control select2" name="label"
-                                                    value="<?php echo e(old('label')); ?>">
+                                                    value="<?php echo e(old('label')); ?>" required>
                                                     <option>Select</option>
                                                     <option value="Top">Top Deals </option>
                                                     <option value="Trending">Trending </option>
@@ -96,33 +128,47 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="mb-3">
+
+                                        <label class="control-label">Feature</label>
+                                        <select class="select2 form-control select2-multiple" name="featured[]"
+                                            value="<?php echo e(old('featured')); ?>" multiple="multiple"
+                                            data-placeholder="Choose ..." required>
+                                            <option value="WI">Wireless</option>
+                                            <option value="BE">Battery life</option>
+                                            <option value="BA">Bass</option>
+                                        </select>
 
                                     </div>
                                     <div class="mb-3">
-                                        <div class="row">
-
-
-                                            <div class="col-sm-6">
-                                                <label class="control-label">Feature</label>
-                                                <select class="select2 form-control select2-multiple" name="features"
-                                                    value="<?php echo e(old('features')); ?>" multiple="multiple"
-                                                    data-placeholder="Choose ...">
-                                                    <option value="WI">Wireless</option>
-                                                    <option value="BE">Battery life</option>
-                                                    <option value="BA">Bass</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label for="qty">Quantity</label>
-                                                <input id="qty" name="qty" value="<?php echo e(old('qty')); ?>"
-                                                    type="number" class="form-control" placeholder="Quntity">
-                                            </div>
-                                        </div>
+                                        <label class="control-label">Color</label>
+                                        <select class="select2 form-control select2-multiple" name="color[]"
+                                            value="<?php echo e(old('color')); ?>" multiple="multiple"
+                                            data-placeholder="Choose ..." required>
+                                            <option value="Black">Black</option>
+                                            <option value="White">White</option>
+                                            <option value="Red">Red</option>
+                                            <option value="Blue">Blue</option>
+                                            <option value="Green">Green</option>
+                                        </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="productdesc">Product Description</label>
-                                        <textarea class="form-control" id="shortDescription" name="shortDescription" value="<?php echo e(old('shortDescription')); ?>" rows="5"
-                                            placeholder="Product Description"></textarea>
+                                        <label class="control-label">Size</label>
+                                        <select class="select2 form-control select2-multiple" name="size[]"
+                                            value="<?php echo e(old('size')); ?>" multiple="multiple"
+                                            data-placeholder="Choose ..." required>
+                                            <option value="S">S</option>
+                                            <option value="M">M</option>
+                                            <option value="L">L</option>
+                                            <option value="XL">XL</option>
+                                            <option value="XXL">XXL</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productdesc">Short Description</label>
+                                        <textarea class="form-control" id="shortDescription" name="shortDescription" value="<?php echo e(old('shortDescription')); ?>"
+                                            rows="5" placeholder="Short Description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -136,9 +182,10 @@
                     </div>
                 <?php else: ?>
                     <div class="card-body">
-                        <form action="<?php echo e(route('droppzone.store')); ?>" method="post" class="dropzone"
+                        <form action="<?php echo e(route('droppzone.pstore')); ?>" method="post" class="dropzone"
                             id="image-upload">
-                            <input type="hidden" name="sku" value = "<?php echo e($sku); ?>">
+                            <input type="hidden" name="sku" value="<?php echo e($sku); ?>">
+                            <input type="hidden" name="id" value="<?php echo e($id); ?>">
                             <input type="hidden" name="type" value="Product">
                             <?php echo csrf_field(); ?>
                             <div class="fallback">
@@ -151,7 +198,7 @@
                                 <h4>Drop files here or click to upload.</h4>
                             </div>
                         </form>
-                        <a href="<?php echo e(route('product.index')); ?>" class="btn btn-primary mt-2 btn-lg"> Done </a>
+                        <a href="<?php echo e(route('product.view')); ?>" class="btn btn-primary mt-2 btn-lg"> Done </a>
                     </div>
                 <?php endif; ?>
             </div>

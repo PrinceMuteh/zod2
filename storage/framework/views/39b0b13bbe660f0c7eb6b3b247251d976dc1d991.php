@@ -1,5 +1,5 @@
 <?php if(session()->has('success')): ?>
-    <div class=" ontainer alert alert-success alert-dismissible fade show" role="alert">
+    <div class="container alert alert-success alert-dismissible fade show" role="alert">
         <strong>success !</strong>
         <?php echo e(session()->get('success')); ?>
 

@@ -2,10 +2,9 @@
 <?php $__env->startSection('css'); ?>
 
 <link href="<?php echo e(URL::asset('/assets/libs/admin-resources/admin-resources.min.css')); ?>" rel="stylesheet">
-
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?>
 
+<?php $__env->startSection('content'); ?>
 <?php $__env->startComponent('components.breadcrumb'); ?>
 <?php $__env->slot('li_1'); ?> Dashboard <?php $__env->endSlot(); ?>
 <?php $__env->slot('title'); ?> Welcome ! <?php $__env->endSlot(); ?>
@@ -44,7 +43,7 @@
             <div class="card-body">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1">
-                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Items</span>
+                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Total Product</span>
                         <h4 class="mb-3">
                             <span class="counter-value" data-target="1256">0</span>
                         </h4>

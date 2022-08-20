@@ -22,8 +22,12 @@ Route::resource('product', ProductController::class);
 
 Route::controller(ProductController::class)->group(function () {
     Route::get('products', 'view')->name("product.view");
+    Route::get('products-single/{id}', 'singleview')->name("product.single");
     Route::get('add-product', 'index')->name("product.add");
     Route::get('upload-image', 'upload_image')->name("upload.image");
+
+    Route::get('product-update', 'productUpdate')->name("product.update");
+
 });
 
 Route::controller(CategoryController::class)->group(function () {
@@ -58,10 +62,12 @@ Route::controller(UserController::class)->group(function () {
     Route::Post('store-user', 'store')->name("store.user");
     Route::get('edit-user/{id}', 'edit')->name("edit.user");
     Route::post('update-user', 'update')->name("update.user");
+    Route::get('single-user/{id}', 'viewUser')->name("user.single");
 });
 
 Route::get('dropzone', [App\Http\Controllers\DropzoneController::class, 'dropzone']);
 Route::Post('dropzone-store', [App\Http\Controllers\DropzoneController::class, 'dropzoneStore'])->name('droppzone.store');
+Route::Post('dropzone-store-image', [App\Http\Controllers\DropzoneController::class, 'dropzoneStoreProductImage'])->name('droppzone.pstore');
 Route::Post('dropzone-update', [App\Http\Controllers\DropzoneController::class, 'dropzoneUpdate'])->name('droppzone.update');
 
 

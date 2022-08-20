@@ -23,7 +23,6 @@
                     <p class="card-title-desc">Fill all information below</p>
                 </div>
                 @include('layouts.message')
-
                 <div class="card-body">
                     <form action="{{ route('update.user') }}" method="post" enctype="multipart/form-data">
                         @csrf
@@ -42,7 +41,7 @@
 
                                 <div class="mb-3">
                                     <label for="email">Account Email</label>
-                                    <input id="email" " name="email" type="text" value = " {{ $user->email }}"
+                                    <input id="email"  name="email" type="text" value = " {{ $user->email }}"
                                         class="form-control @error('email') is-invalid @enderror">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">

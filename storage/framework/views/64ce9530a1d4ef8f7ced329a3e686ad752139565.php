@@ -22,7 +22,6 @@
                     <p class="card-title-desc">Fill all information below</p>
                 </div>
                 <?php echo $__env->make('layouts.message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                 <div class="card-body">
                     <form action="<?php echo e(route('update.user')); ?>" method="post" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
@@ -55,7 +54,7 @@ unset($__errorArgs, $__bag); ?>
 
                                 <div class="mb-3">
                                     <label for="email">Account Email</label>
-                                    <input id="email" " name="email" type="text" value = " <?php echo e($user->email); ?>"
+                                    <input id="email"  name="email" type="text" value = " <?php echo e($user->email); ?>"
                                         class="form-control <?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -126,7 +125,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <img src="<?php echo e($user->); ?>" alt="" srcset="">
+                                <img src="<?php echo e($user->avatar); ?>" alt="" srcset="">
                             </div>
                         </div>
 
